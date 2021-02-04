@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <input id="input" type="text" class="form-control" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger" id="button">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img id="icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 class="m-1">City</h1>
+            <br>
+            <h1 id="city" class="py-2"></h1>
+            <h3 class="my-2 py-2">Temperature <br> <span id="temp" class="my-2 py-2"><br> 0</span>&deg;C</h3>
+            <h1 class="my-2 py-2">Situation <br> <span id="lead" class="my-2 py-2"></span></h1>
+            <h1 class="my-2 py-2">Wind Speed <br> <span id="wind" class="my-2 py-2"><br>0.0</span></h1>
+            <h1 id="error" class="my-4 py-2"></h1>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
