@@ -37,11 +37,9 @@
                  document.getElementById("error").innerText = "We Can't find a valid city name.Please try again";
              })
 
-<<<<<<< HEAD
+
      }
  });
-=======
-    }
-});
-document.getElementById("input").value='';
->>>>>>> ae76a7694965ef74bcc5ea2ce5f3c665dbf064e3
+
+
+ document.getElementById("input").value = '';
