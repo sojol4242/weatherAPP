@@ -1,86 +1,41 @@
-< !doctype html >
-    <
-    html lang = "en" >
+ document.getElementById("button").addEventListener("click", function() {
+     const input = document.getElementById("input").value;
 
-    <
-    head >
-    <
-    title > Temperature < /title>
-    <!-- Required meta tags -->
-    <
-    meta charset = "utf-8" >
-    <
-    meta name = "viewport"
-content = "width=device-width, initial-scale=1, shrink-to-fit=no" >
+     if (input == '') {
+         alert("Please enter a city name")
+     } else {
 
-    <!-- Bootstrap CSS -->
-    <
-    link rel = "stylesheet"
-href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
-    <
-    style >
-    html {
-        background: url(images / bg - image.jpg) no - repeat;
-    }
+         // API CALL
+         fetch(
+                 `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=2f61081082d78a32eb6ee39341d20a5a`
+             )
+             .then(response => response.json())
+             .then((data) => {
+                 const temperature = Math.floor(((data.main.temp) - 273))
+                 console.log(temperature)
+                 document.getElementById("city").innerText = data.name;
+                 document.getElementById("temp").innerText = temperature;
+                 document.getElementById("lead").innerText = data.weather[0].main;
+                 document.getElementById("wind").innerText = data.wind.speed;
+                 document.getElementById(
+                     "icon"
+                 ).src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                 document.getElementById("error").innerText = "";
+                 console.log(data);
+             })
+             .catch(err => {
+                 // alert("Can't find a valid city")
+                 document.getElementById("input").value = ''
+                 document.getElementById("city").innerText = ''
+                 document.getElementById("temp").innerText = '';
+                 document.getElementById("lead").innerText = '';
+                 document.getElementById("wind").innerText = null;
+                 document.getElementById(
+                     "icon"
+                 ).src = data.weather[0].icon;
 
-body {
-    background - size: cover;
-    height: 100 vh;
-} <
-/style> <
-/head>
+                 document.getElementById("error").innerText = "We Can't find a valid city name.Please try again";
+             })
 
-<
-body >
-    <
-    div class = "container" >
-    <
-    form class = "col-md-6 m-auto py-5" >
-    <
-    div class = "input-group mb-3" >
-    <
-    input id = "input"
-type = "text"
-class = "form-control"
-placeholder = "Enter a location for Weather ..." >
-    <
-    div class = "input-group-append" >
-    <
-    button type = "button"
-class = "btn btn-danger"
-id = "button" > Search < /button> <
-    /div> <
-    /div> <
-    /form> <
-    div class = "weather-status text-white text-center" >
-    <
-    img id = "icon"
-src = "https://openweathermap.org/img/wn/02d@2x.png"
-alt = "" >
-    <
-    h1 class = "m-1" > City < /h1> <
-    br >
-    <
-    h1 id = "city"
-class = "py-2" > < /h1> <
-    h3 class = "my-2 py-2" > Temperature < br > < span id = "temp"
-class = "my-2 py-2" > < br > 0 < /span>&deg;C</h
-3 >
-    <
-    h1 class = "my-2 py-2" > Situation < br > < span id = "lead"
-class = "my-2 py-2" > < /span></h
-1 >
-    <
-    h1 class = "my-2 py-2" > Wind Speed < br > < span id = "wind"
-class = "my-2 py-2" > < br > 0.0 < /span></h
-1 >
-    <
-    h1 id = "error"
-class = "my-4 py-2" > < /h1> <
-    /div> <
-    /div> <
-    script src = "main.js" > < /script> <
-    /body>
-
-<
-/html>
+     }
+ });
